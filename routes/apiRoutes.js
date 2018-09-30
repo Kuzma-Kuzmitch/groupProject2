@@ -2,8 +2,10 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get("/api/player", function(req, res) {
+    db.Player.create({
+
+    }).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
