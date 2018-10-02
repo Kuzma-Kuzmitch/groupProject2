@@ -6,10 +6,12 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the posts
-  app.get("/api/get/weapons", function(req, res) {
+  app.get("/api/weapons", function(req, res) {
    
     db.Post.findAll({}).then(function(dbResponse) {
-        res.render("weapons",dbResponse);
+
+      res.json(dbResponse);
+        // res.render("weapons",dbResponse);
     });
   });
 
@@ -25,5 +27,18 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/weaponscreate", function(req, res) {
+    db.Weapons.create(
+      {
+        weapon_name: req.body.name,
+        weapon_text: req.body.weaponText,
+        weapon_effect: req.body.weaponEffect,
+        weapon_stats: req.body.weaponStats
+    }
+    
+    ).then(function(dbData) {
+        res.json(dbData);
+      });
+  });
 
 };
