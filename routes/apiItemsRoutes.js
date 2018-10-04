@@ -15,11 +15,11 @@ module.exports = function(app) {
   });
 
   // Get route for retrieving a single Items
-  app.get("/api/get/item/:id", function(req, res) {
+  app.get("/api/getitem/:name", function(req, res) {
 
     db.Items.findOne({
       where: {
-        id: req.params.id
+        itemName: req.params.name
       }
     }).then(function(dbResponse) {
       res.json(dbResponse);
@@ -27,14 +27,14 @@ module.exports = function(app) {
   });
 
 
-  app.post("/api/items/create", function(req, res) {
+  app.post("/api/itemcreate", function(req, res) {
     db.Items.create(
       {
-        item_name: req.body.name,
-       item_text: req.body.itemText,
-        item_effect: req.body.itemEffect,
-        item_stats: req.body.itemStats,
-        PlayerId: req.body.pID
+        itemName: req.body.itemName,
+      itemDescription: req.body.itemDescription,
+      itemEffect: req.body.itemEffect,
+      itemStats: req.body.itemStats
+        
       }
     
     ).then(function(dbData) {

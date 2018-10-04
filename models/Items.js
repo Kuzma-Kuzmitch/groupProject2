@@ -1,16 +1,16 @@
 module.exports = function (sequelize, DataTypes) {
     var Items = sequelize.define("Items", {
 
-        item_name: {
+        itemName: {
             type: DataTypes.STRING,
             allowNull: false,
          
           },
-        item_text: {
+        itemDescription: {
             type: DataTypes.STRING,
           },
-        item_effect: DataTypes.STRING ,
-        item_stats:{
+        itemEffect: DataTypes.STRING ,
+        itemStats:{
             type: DataTypes.INTEGER,
             allowNull: false,
           }
@@ -18,15 +18,7 @@ module.exports = function (sequelize, DataTypes) {
 
     });
 
-    // Items.associate = function(models) {
-    //     // We're saying that a Items should belong to an Author
-    //     // A Items can't be created without an Author due to the foreign key constraint
-    //     Items.belongsTo(models.Players, {
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
+
 
 
     return Items;

@@ -2,32 +2,41 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+var passport   = require('passport')
+var session    = require('express-session');
+
 
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+
+var PORT = process.env.PORT || 8000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// For Passport
+// Session Secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static("public"));
 
+
+
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+app.set('views', './views')
+app.engine('handlebars', exphbs({
+    extname: '.handlebars'
+}));
+app.set('view engine', 'handlebars');
 
 // Routes
-// require("./routes/apiRoutes")(app);
+require("./routes/apiAuthRoutes")(app,passport);
 require("./routes/apiItemsRoutes")(app);
 require("./routes/apiWeaponsRoutes")(app);
 require("./routes/apiPlayerRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require('./config/passport/passport.js')(passport, db.User);
 
 
 var syncOptions = { force: false };

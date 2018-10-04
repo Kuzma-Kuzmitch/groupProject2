@@ -1,17 +1,17 @@
 module.exports = function (sequelize, DataTypes) {
     var Weapons = sequelize.define("Weapons", {
 
-        weapon_name: {
+        weaponName: {
             type: DataTypes.STRING,
             allowNull: false,
         
           },
-        weapon_text: {
-            type: DataTypes.STRING,
+        weaponDescription: {
+            type: DataTypes.TEXT,
          
           },
-        weapon_effect: DataTypes.STRING ,
-        weapon_stats:{
+        weaponEffect: DataTypes.STRING ,
+        weaponStats:{
             type: DataTypes.INTEGER,
             allowNull: false,
          
@@ -19,17 +19,6 @@ module.exports = function (sequelize, DataTypes) {
 
 
     });
-
-    // Weapons.associate = function(models) {
-    //     // We're saying that a Weapons should belong to an Author
-    //     // A Weapons can't be created without an Author due to the foreign key constraint
-    //     Weapons.belongsTo(models.Players, {
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
-
 
     return Weapons;
 };
