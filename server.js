@@ -10,7 +10,7 @@ var db = require("./models");
 
 var app = express();
 
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +27,8 @@ app.use(express.static("public"));
 // Handlebars
 app.set('views', './views')
 app.engine('handlebars', exphbs({
-    extname: '.handlebars'
+    extname: '.handlebars',
+    defaultLayout: "main"
 }));
 app.set('view engine', 'handlebars');
 
