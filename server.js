@@ -10,14 +10,14 @@ var db = require("./models");
 
 var app = express();
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 7070;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // For Passport
 // Session Secret
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); 
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("public"));
@@ -35,7 +35,7 @@ app.set('view engine', 'handlebars');
 // Routes
 require("./routes/apiAuthRoutes")(app,passport);
 require("./routes/apiItemsRoutes")(app);
-require("./routes/apiWeaponsRoutes")(app);
+require("./routes/getRoutes")(app);
 require("./routes/apiPlayerRoutes")(app);
 require('./config/passport/passport.js')(passport, db.User);
 
