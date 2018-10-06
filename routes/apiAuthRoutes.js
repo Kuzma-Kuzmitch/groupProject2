@@ -2,6 +2,7 @@
 var authController = require('../controllers/authController');
 
 
+
 // Routes
 // =============================================================
 module.exports = function(app,passport) {
@@ -27,6 +28,7 @@ module.exports = function(app,passport) {
       failureRedirect: '/signup'
     }
 ));
+
 
 
 app.post('/signin', passport.authenticate('local-signin', {

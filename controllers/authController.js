@@ -1,3 +1,5 @@
+var db = require("../models");
+
 var exports = module.exports = {}
  
 exports.signup = function(req, res) {
@@ -38,3 +40,4 @@ exports.room2 = function(req, res) {
     res.render('room3');
  
 }
+

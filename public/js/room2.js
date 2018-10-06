@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  getStats();
+
 var gameState = {
   room1: false,
   room2: false,
@@ -398,8 +400,18 @@ $(document.body).on("click", ".response", function(){
 
 
 
+function getStats(){
 
-
+  var playerName = sessionStorage.getItem("playerName");
+  var type = sessionStorage.getItem("type");
+  var hp = sessionStorage.getItem("hp");
+  var ap =sessionStorage.getItem("ap");
+  
+    $(".pName").text(playerName);
+    $(".pRace").text(type);
+    $(".pHp").text(hp);
+    $(".pAp").text(ap);
+  }
 
 
 

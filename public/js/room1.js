@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  randomPlayer();
+
   var gameState = {
     room1: false,
     room2: false,
@@ -272,7 +274,29 @@ function checkGameState(){
 }
 
 
+function randomPlayer(){
 
+
+    $.ajax("/api/player", {
+      type: "GET",
+    }).then(
+      function(data) {
+        window.sessionStorage.setItem('playerName', data[0].playerName);
+        window.sessionStorage.setItem('ap', data[0].playerAttack);
+        window.sessionStorage.setItem('hp', data[0].playerHp);
+        window.sessionStorage.setItem('type', data[0].playerType);
+
+        $(".pName").text(data[0].playerName);
+        $(".pRace").text(data[0].playerType);
+        $(".pHp").text(data[0].playerHp);
+        $(".pAp").text(data[0].playerAttack);
+      }
+    );
+
+   
+
+
+}
 
 
 
