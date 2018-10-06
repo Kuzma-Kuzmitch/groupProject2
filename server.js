@@ -28,14 +28,14 @@ app.use(express.static("public"));
 app.set('views', './views')
 app.engine('handlebars', exphbs({
     extname: '.handlebars',
-    defaultLayout: "main"
+    // defaultLayout: "main"
 }));
 app.set('view engine', 'handlebars');
 
 // Routes
 require("./routes/apiAuthRoutes")(app,passport);
 require("./routes/apiItemsRoutes")(app);
-require("./routes/getRoutes")(app);
+require("./routes/htmlRoutes")(app);
 require("./routes/apiPlayerRoutes")(app);
 require('./config/passport/passport.js')(passport, db.User);
 

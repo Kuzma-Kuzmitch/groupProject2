@@ -22,8 +22,19 @@ exports.logout = function(req, res) {
  
 }
 
-exports.dashboard = function(req, res) {
+exports.room1 = function(req, res) {
  
-    res.render('dashboard');
+    res.render('room1');
+ 
+}
+
+exports.room2 = function(req, res) {
+ 
+    res.render('room2');
+ }
+
+ exports.room3 = function(req, res) {
+ 
+    res.render('room3');
  
 }
