@@ -1,3 +1,5 @@
+var db = require("../models");
+
 var exports = module.exports = {}
  
 exports.signup = function(req, res) {
@@ -16,14 +18,26 @@ exports.logout = function(req, res) {
  
     req.session.destroy(function(err) {
  
-        res.render('signup');
+        res.render('signin');
  
     });
  
 }
 
-exports.dashboard = function(req, res) {
+exports.room1 = function(req, res) {
  
-    res.render('dashboard');
+    res.render('room1');
  
 }
+
+exports.room2 = function(req, res) {
+ 
+    res.render('room2');
+ }
+
+ exports.room3 = function(req, res) {
+ 
+    res.render('room3');
+ 
+}
+

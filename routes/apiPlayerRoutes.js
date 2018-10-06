@@ -1,71 +1,45 @@
 var db = require("../models");
+var Sequelize = require("sequelize");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/player/", function(req, res) {
-    db.Players.findAll({}).then(function(dbData) {
-      res.json(dbData);
-      // res.render("player",dbData);
-    });
-  });
+  app.get("/api/player", function(req, res) {
 
-  app.get("/api/state", function(req, res) {
-    db.State.findAll({
-      where: {
-        id: 1
-      }
-    }).then(function(data) {
-      res.json(data)
-    })
-  });
-
-  app.put("/api/state", function(req, res) {
-    db.State.update({
-        room1: req.body.room1,
-        room2: req.body.room2,
-        room3: req.body.room3,
-        fightRoom1: req.body.fightRoom1,
-        fightRoom2: req.body.fightRoom2,
-        hasTorch: req.body.hasTorch,
-        hasDagger: req.body.hasDagger,
-        hasDust: req.body.hasDust
-      },{
-      where: {
-        id: 1
-    }})
-  });
-
-  app.post("/api/state", function(req, res) {
-    db.State.create({
-      room1: false,
-      room2: false,
-      room3: false,
-      fightRoom1: false,
-      fightRoom2: false,
-      hasTorch: false,
-      hasDagger: false,
-      hasDust: false
-    })
-  .then(function(data){
-    res.json(data)
-  })
-})
-
+    db.Players.findAll({ order: Sequelize.literal('rand()'), limit: 1})
+    
+    
+    .then((dbData => {
+      res.json(dbData)
+  }))
+});
 
 
   // Create a new example
   app.post("/api/playercreate", function(req, res) {
     db.Players.create(
       {
-        player_name: req.body.name,
-        player_attack: req.body.playerAttack,
-        player_hp: req.body.playerHp,
+        playerName:req.body.name,
+        playerAttack: req.body.playerAttack,
+        playerHp: req.body.playerHp,
+        playerType:req.body.playerType
     }
 
     ).then(function(dbData) {
         res.json(dbData);
       });
   });
+
+  app.get("/username", function(req,res){
+
+    db.User.findOne({
+      where: {
+          email: req.body.email
+      }
+  }).then(function(dbResponse) {
+      res.json("dbResponse");
+       console.log("-----------------------------");
+    });
+  })
 
 
 

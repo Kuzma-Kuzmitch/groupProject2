@@ -1,9 +1,11 @@
 $(document).ready(function() {
 
+  getStats();
+
   var gameState = {
-    room1: false,
-    room2: false,
-    room3: false,
+    Room1: false,
+    Room2: false,
+    Room3: false,
     fightRoom1: false,
     fightRoom2: false,
     hasTorch: false,
@@ -14,9 +16,9 @@ $(document).ready(function() {
     $.get( "/api/state", function( data ) {
       console.log(data[0]);
       var data = data[0]
-      gameState.room1 = data.room1;
-      gameState.room2 = data.room2;
-      gameState.room3 = data.room3;
+      gameState.Room1 = data.Room1;
+      gameState.Room2 = data.Room2;
+      gameState.Room3 = data.Room3;
       gameState.fightRoom1 = data.fightRoom1;
       gameState.fightRoom2 = data.fightRoom2;
       gameState.hasTorch = data.hasTorch;
@@ -107,10 +109,10 @@ var response1_1_1_1_1_1_1 = {
   number: 6,
   alert: "He is before the begining. He waits angrily",
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   },
   update: function(){
-    gameState.room3 = true;
+    gameState.Room3 = true;
     $.ajax("/api/state", {
       type: "PUT",
       data: gameState
@@ -131,7 +133,7 @@ var response1_1_1_1_1_1_3 = {
   number: 8,
   alert: "'Then you will get nowhere in life, or death!'",
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   }
 };
 
@@ -166,7 +168,7 @@ var response1_1_1_1_1_4_1 = {
   choices: ["Leave"],
   responses: [14],
   update: function(){
-    gameState.room3 = true;
+    gameState.Room3 = true;
     $.ajax("/api/state", {
       type: "PUT",
       data: gameState
@@ -203,11 +205,11 @@ var response1_1_1_1_2 = {
 var response1_1_1_4 = {
   number: 14,
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   },
   alert: "You leave the room",
   update: function(){
-    gameState.room3 = true;
+    gameState.Room3 = true;
     $.ajax("/api/state", {
       type: "PUT",
       data: gameState
@@ -235,11 +237,11 @@ var response1_1_2_1 = {
   number: 16,
   result: "The woman sits down facing the wall ignoring you, maybe you should try again later.",
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   },
   alert: "You decide to leave",
   update: function(){
-    gameState.room3 = true;
+    gameState.Room3 = true;
     $.ajax("/api/state", {
       type: "PUT",
       data: gameState
@@ -262,7 +264,11 @@ var response1_1_2_2 = {
 
 var response1_1_2_2_1 = {
   number: 18,
-  result: "The woman walks over to you, she grips you by the throat with her long, cold fingers. My she is strong you think as she effortlessly snaps you neck."
+  result: "The woman walks over to you, she grips you by the throat with her long, cold fingers. My she is strong you think as she effortlessly snaps you neck.",
+  reload: function(){
+    location.replace("/death")
+  },
+  alert: "The woman walks over to you, she grips you by the throat with her long, cold fingers. My she is strong you think as she effortlessly snaps you neck."
 }
 
 var response1_1_4 = {
@@ -290,7 +296,7 @@ var response1_1_4_1 = {
 var response1_1_4_1_2 = {
   number: 21,
   reload: function(){
-    location.replace("/room2")
+    location.replace("/Room2")
   },
   alert: "You head back to the bookshelf"
 };
@@ -354,7 +360,7 @@ var response1_1_4_1_2 = {
 
 
 function checkGameState(){
-  if (gameState.room2) {
+  if (gameState.Room2) {
     response1_1 = {
       number: 1,
       result: "You say hello and the woman stops, she meets your eyes for a brief period before uttering some things under her breath",
@@ -381,7 +387,7 @@ function checkGameState(){
       responses: [2, 15, 17]
     };
   }
-  if (gameState.fightRoom1) {
+  if (gameState.hasDust) {
     response1_1_1_1_1 = {
       number: 4,
       result: "'Now nothing comes good in life for free. Do you have what I need then, eh? I don't smell it on ya.'",
@@ -410,7 +416,7 @@ function checkGameState(){
   var responses = [response1, response1_1, response1_1_2_2_1, response1_1_1_4];
 
   var room_3 = {
-    description: "The room is sparse with no decoration, you see a cauldron bubbling over with some strange liquid along with a woman dancing around manically.",
+    description: "The room is littered with beakers and measuring glasses. Standing by the table you see a white-haired woman laughing manically as she pours fluids from one conatiner to the next...",
     first_options: [
         "Stand in silence and wait this out",
         "Say Hello",
@@ -528,6 +534,18 @@ $(document.body).on("click", ".response", function(){
 
 
 
+function getStats(){
+
+var playerName = sessionStorage.getItem("playerName");
+var type = sessionStorage.getItem("type");
+var hp = sessionStorage.getItem("hp");
+var ap =sessionStorage.getItem("ap");
+
+  $(".pName").text(playerName);
+  $(".pRace").text(type);
+  $(".pHp").text(hp);
+  $(".pAp").text(ap);
+}
 
 
 

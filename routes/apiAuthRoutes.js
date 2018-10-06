@@ -1,6 +1,6 @@
 
-var db = require("../models");
 var authController = require('../controllers/authController');
+
 
 
 // Routes
@@ -16,18 +16,23 @@ module.exports = function(app,passport) {
     
     app.get('/logout',authController.logout);
 
-    app.get('/dashboard',isLoggedIn, authController.dashboard);
+    app.get('/room1',isLoggedIn, authController.room1);
+
+    app.get('/room2',isLoggedIn, authController.room2);
+    
+    app.get('/room3',isLoggedIn, authController.room3);
     
     app.post('/signup', passport.authenticate('local-signup', {
-      successRedirect: '/dashboard',
+      successRedirect: '/room1',
 
       failureRedirect: '/signup'
     }
 ));
 
 
+
 app.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/dashboard',
+  successRedirect: '/intro',
 
   failureRedirect: '/signin'
 }

@@ -2,8 +2,9 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-var passport   = require('passport')
-var session    = require('express-session');
+var passport = require('passport')
+var session  = require('express-session');
+
 
 
 var db = require("./models");
@@ -28,15 +29,16 @@ app.use(express.static("public"));
 app.set('views', './views')
 app.engine('handlebars', exphbs({
     extname: '.handlebars',
-    defaultLayout: "main"
+    // defaultLayout: "main"
 }));
 app.set('view engine', 'handlebars');
 
 // Routes
 require("./routes/apiAuthRoutes")(app,passport);
-require("./routes/apiItemsRoutes")(app);
-require("./routes/getRoutes")(app);
 require("./routes/apiPlayerRoutes")(app);
+require("./routes/apiItemsRoutes")(app);
+require("./routes/apiStateRoutes")(app);
+require("./routes/htmlRoutes")(app);
 require('./config/passport/passport.js')(passport, db.User);
 
 
