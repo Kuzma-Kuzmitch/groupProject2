@@ -3,9 +3,9 @@ $(document).ready(function() {
   getStats();
 
 var gameState = {
-  room1: false,
-  room2: false,
-  room3: false,
+  Room1: false,
+  Room2: false,
+  Room3: false,
   fightRoom1: false,
   fightRoom2: false,
   hasTorch: false,
@@ -16,9 +16,9 @@ var gameState = {
   $.get( "/api/state", function( data ) {
     console.log(data[0]);
     var data = data[0]
-    gameState.room1 = data.room1;
-    gameState.room2 = data.room2;
-    gameState.room3 = data.room3;
+    gameState.Room1 = data.Room1;
+    gameState.Room2 = data.Room2;
+    gameState.Room3 = data.Room3;
     gameState.fightRoom1 = data.fightRoom1;
     gameState.fightRoom2 = data.fightRoom2;
     gameState.hasTorch = data.hasTorch;
@@ -107,7 +107,8 @@ var response1_1_1_1_1_1_3 = {
   result: "Entering chamber",
   reload: function(){
     location.replace("/fightRoom2")
-  }
+  },
+  alert: "Prepare for battle!"
 };
 
 var response1_1_1_1_1_3 = {
@@ -177,11 +178,11 @@ var response1_1_1_1_2 = {
 var response1_1_1_4 = {
   number: 14,
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   },
   alert: "You head back",
   update: function(){
-    gameState.room2 = true
+    gameState.Room2 = true
     $.ajax("/api/state", {
       type: "PUT",
       data: gameState
@@ -211,7 +212,7 @@ var response1_1_2_1 = {
   number: 16,
   result: "The woman sits down facing the wall ignoring you, maybe you should try again later.",
   reload: function(){
-    location.replace("/room1")
+    location.replace("/Room1")
   }
 };
 var response1_1_2_2 = {
@@ -254,7 +255,7 @@ var response1_1_4_1 = {
 var response1_1_4_1_2 = {
   number: 21,
   reload: function(){
-    location.replace("/room2")
+    location.replace("/Room2")
   }
 };
 

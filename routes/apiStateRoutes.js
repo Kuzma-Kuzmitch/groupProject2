@@ -8,7 +8,7 @@ module.exports = function(app) {
   app.get("/api/state", function(req, res) {
     db.State.findAll({
       where: {
-        id: 1
+        id: 4
       }
     }).then(function(data) {
       res.json(data)
@@ -17,9 +17,9 @@ module.exports = function(app) {
 
   app.put("/api/state", function(req, res) {
     db.State.update({
-        room1: req.body.room1,
-        room2: req.body.room2,
-        room3: req.body.room3,
+        Room1: req.body.Room1,
+        Room2: req.body.Room2,
+        Room3: req.body.Room3,
         fightRoom1: req.body.fightRoom1,
         fightRoom2: req.body.fightRoom2,
         hasTorch: req.body.hasTorch,
@@ -27,11 +27,11 @@ module.exports = function(app) {
         hasDust: req.body.hasDust
       },{
       where: {
-        id: 1
+        id: 4
     }})
   });
 
-  app.post("/api/state", function(req, res) {
+  app.post("/api/createstate", function(req, res) {
     db.State.create({
       room1: false,
       room2: false,

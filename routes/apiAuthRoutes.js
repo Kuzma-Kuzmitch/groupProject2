@@ -32,7 +32,7 @@ module.exports = function(app,passport) {
 
 
 app.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/room1',
+  successRedirect: '/intro',
 
   failureRedirect: '/signin'
 }
