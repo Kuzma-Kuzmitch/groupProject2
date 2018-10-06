@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var passport   = require('passport')
 var session    = require('express-session');
-var cookieParser = require('cookie-parser')
+
 
 
 var db = require("./models");
@@ -18,15 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // For Passport
 // Session Secret
-app.use(cookieParser());
-app.use(session({
-            secret: 'cookie_secret',
-            name: 'cookie_name',
-            proxy: true,
-            resave: true,
-            saveUninitialized: true
-        })
-    );
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));
 app.use(passport.initialize());
 app.use(passport.session());

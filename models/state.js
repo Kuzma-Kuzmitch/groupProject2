@@ -1,39 +1,30 @@
 module.exports = function (sequelize, DataTypes) {
-   var State = sequelize.define("State", {
+    var State = sequelize.define("State", {
 
-         room1: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         room2: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         room3: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         fightRoom1: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         fightRoom2: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         hasTorch: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         hasDagger: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         },
-         hasDust: {
-           type: DataTypes.BOOLEAN,
-           defaultVaule: false
-         }
-   });
+          Room1: {
+            type: DataTypes.BOOLEAN,
+          },
+          Room2: {
+            type: DataTypes.BOOLEAN,
+          },
+          Room3: {
+            type: DataTypes.BOOLEAN,
+          },
+          fightRoom1: {
+            type: DataTypes.BOOLEAN,
+          },
+          fightRoom2: {
+            type: DataTypes.BOOLEAN,
+          },
+          hasTorch: {
+            type: DataTypes.BOOLEAN,
+          },
+          hasDagger: {
+            type: DataTypes.BOOLEAN,
+          },
 
-   return State;
+    
+    });
+
+    return State;
 };
